@@ -1,4 +1,4 @@
-import { initializeApp, getApps, cert } from 'firebase-admin/app';
+import { initializeApp, getApps, cert, applicationDefault } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import { getAuth } from 'firebase-admin/auth';
 import dotenv from 'dotenv';
@@ -14,9 +14,15 @@ const serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS
 
 // Initialize Firebase Admin
 if (getApps().length === 0) {
-  initializeApp({
-    credential: cert(serviceAccountPath)
-  });
+  if (process.env.NODE_ENV === 'production') {
+    initializeApp({
+      credential: applicationDefault()
+    });
+  } else {
+    initializeApp({
+      credential: cert(serviceAccountPath)
+    });
+  }
 }
 
 export const db = getFirestore();
