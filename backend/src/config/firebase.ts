@@ -16,7 +16,8 @@ const serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS
 if (getApps().length === 0) {
   if (process.env.NODE_ENV === 'production') {
     initializeApp({
-      credential: applicationDefault()
+      credential: applicationDefault(),
+      projectId: process.env.FIREBASE_PROJECT_ID || "mindvault-ai-705c0"
     });
   } else {
     initializeApp({
