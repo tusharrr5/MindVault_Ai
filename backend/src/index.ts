@@ -21,6 +21,11 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// Render Health Check
+app.get('/healthz', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 // Routes will be added here
 import authRoutes from './routes/auth.routes';
 import journalRoutes from './routes/journal.routes';
