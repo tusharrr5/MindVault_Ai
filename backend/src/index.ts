@@ -33,7 +33,7 @@ app.use('/goals', goalRoutes);
 // Global Error Handler
 app.use(errorHandler);
 
-const PORT = Number(process.env.PORT) || 8080;
+const PORT = Number(process.env.PORT) || 10000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server listening on port ${PORT}`);
 });

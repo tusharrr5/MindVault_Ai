@@ -15,8 +15,5 @@ RUN npm ci --omit=dev
 
 COPY --from=builder /app/dist ./dist
 
-# Let Cloud Run set the PORT dynamically (Cloud Run uses 8080 by default)
-ENV PORT=8080
-EXPOSE 8080
-
+# PORT is injected at runtime by the hosting platform (Render, Cloud Run, etc.)
 CMD ["npm", "run", "start"]

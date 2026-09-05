@@ -3,6 +3,13 @@ import { useCallback } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+if (!API_URL) {
+  console.error(
+    '[MindVault] NEXT_PUBLIC_API_URL is not set. ' +
+    'Add it to Vercel Environment Variables and redeploy.'
+  );
+}
+
 export function useApi() {
   const { getToken } = useAuth();
 
